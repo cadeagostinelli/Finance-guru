@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="HTML, CSS">
+    <meta name="description"
+        content="Make organizing your finances easy with Finance Guru. Work with beneficial tools to organize your finances and learn how you can improve today.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Finance Guru</title>
+    <!-- Basic css styiling -->
+    <style>
+        img {
+            width: 200px;
+            border-radius: 10px;
+            float: left;
+            margin-right: 10px;
+        }
+
+        .header {
+            font-weight: bold;
+        }
+
+        em {
+            color: darkturquoise;
+            font-style: normal;
+        }
+    </style>
+    <!-- Link to css file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <header>
+        <h2 class="logo">Finance Guru</h2>
+        <nav class="navigation"> <!-- Hrefs to all of our separate pages -->
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('about') }}">About</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+            <button class="btnLogin-popup">Login</button>
+        </nav>
+    </header>
+    <p>Feel free to browse your <em>finance analysis report</em>!</p>
+    {% if success_message %} <!-- Flask placeholder -->
+    <div class="success-message">{{ success_message }}</div> <!-- Define division-->
+    {% endif %}
+    <form method="POST" enctype="multipart/form-data" action="/upload">
+        <input type="file" name="file">
+        <input type="submit" value="upload">
+    </form>
+    <h1>Finance Dashboard</h1>
+
+    {% if pie_chart_available %}
+    <h2>Expense Pie Chart</h2>
+    <img src="{{ url_for('static', filename='images/exp_pie_chart.png') }}" alt="Expenses" width="800" height="400">
+    {% else %}
+    <p>No data available for the pie chart.</p>
+    {% endif %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <h3 class="header">Finance Analysis:</h3>
+    <a href="excel/finance_example.xlsx" download>Download Spreadsheet</a>
+</body>
+
+</html>
