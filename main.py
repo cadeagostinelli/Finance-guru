@@ -52,9 +52,31 @@ def upload():
         if not df_income.empty:
             total_income = df_income['amount'].sum()
             flash(f'Total Income: ${total_income:.2f}', 'success')
+            income_data = df_income.groupby('source')['amount'].sum()
+
+            # Plotting the pie chart for income
+            fig, ax = plt.subplots(figsize=(12, 6))
+            ax.pie(income_data, labels=income_data.index, autopct='%1.1f%%', startangle=140, wedgeprops=dict(width=0.3, edgecolor='w'))
+            ax.set_title('Income', fontsize=16)
+            ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+
+            # Convert the plot to an image
+            image_path = os.path.join(app.static_folder, 'images', 'inc_pie_chart.png')
+            canvas = FigureCanvas(fig)
+            canvas.print_png(image_path)
+
+            # Set pie_chart_available to True
+            pie_chart_available = True
+
+        else:
+            # Set pie_chart_available to False if no income data
+            pie_chart_available = False
+
 
         # Process expense data
         if not df_expense.empty:
+            total_expense = df_expense['amount'].sum()
+            flash(f'Total Expense: ${total_expense:.2f}', 'success')
             # Count occurrences of each expense source
             expense_data = df_expense.groupby('source')['amount'].sum()
 
@@ -66,6 +88,31 @@ def upload():
 
             # Convert the plot to an image
             image_path = os.path.join(app.static_folder, 'images', 'exp_pie_chart.png')
+            canvas = FigureCanvas(fig)
+            canvas.print_png(image_path)
+
+            # Set pie_chart_available to True
+            pie_chart_available = True
+
+        else:
+            # Set pie_chart_available to False if no expense data
+            pie_chart_available = False
+
+        # Process expense data
+        if not df_investment.empty:
+            total_investment = df_investment['amount'].sum()
+            flash(f'Total Investment: ${total_investment:.2f}', 'success')
+            # Count occurrences of each expense source
+            investment_data = df_investment.groupby('source')['amount'].sum()
+
+            # Plotting the pie chart for expenses
+            fig, ax = plt.subplots(figsize=(12, 6))
+            ax.pie(investment_data, labels=investment_data.index, autopct='%1.1f%%', startangle=140, wedgeprops=dict(width=0.3, edgecolor='w'))
+            ax.set_title('Investments', fontsize=16)
+            ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+
+            # Convert the plot to an image
+            image_path = os.path.join(app.static_folder, 'images', 'inv_pie_chart.png')
             canvas = FigureCanvas(fig)
             canvas.print_png(image_path)
 

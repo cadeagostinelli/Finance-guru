@@ -51,21 +51,7 @@
     </form>
     <h1>Finance Dashboard</h1>
 
-    {% if pie_chart_available %}
-    <h2>Expense Pie Chart</h2>
-    <img src="{{ url_for('static', filename='images/exp_pie_chart.png') }}" alt="Expenses" width="800" height="400">
-    {% else %}
-    <p>No data available for the pie chart.</p>
-    {% endif %}
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <ul class="flashes">
-                {% for message in messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-    {% endwith %}
+    
     <h3 class="header">Finance Analysis:</h3>
     <a href="excel/finance_example.xlsx" download>Download Spreadsheet</a>
     <div class=""wrapper">
@@ -94,6 +80,83 @@
             </form>
         </div>
     </div>
+    <!--Here is beginning of our tab creation-->
+    <div class="tab-nav">
+        <button class="tab-btn" data-tab="income">Income</button>
+        <button class="tab-btn" data-tab="expense">Expense</button>
+        <button class="tab-btn" data-tab="stock">Stock</button>
+    </div>
+    <div class="section-container" id="income-section">
+        {% if pie_chart_available %}
+    <h2>Income Pie Chart</h2>
+    <img src="{{ url_for('static', filename='images/inc_pie_chart.png') }}" alt="Income" width="800" height="400">
+    {% else %}
+    <p>No data available for the pie chart.</p>
+    {% endif %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    </div>
+
+    <div class="section-container" id="expense-section">
+        {% if pie_chart_available %}
+    <h2>Expense Pie Chart</h2>
+    <img src="{{ url_for('static', filename='images/exp_pie_chart.png') }}" alt="Expenses" width="800" height="400">
+    {% else %}
+    <p>No data available for the pie chart.</p>
+    {% endif %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    </div>
+
+    <div class="section-container" id="stock-section">
+        {% if pie_chart_available %}
+        <h2>Investment Pie Chart</h2>
+        <img src="{{ url_for('static', filename='images/inv_pie_chart.png') }}" alt="Investment" width="800" height="400">
+        {% else %}
+        <p>No data available for the pie chart.</p>
+        {% endif %}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </div>
+    <script>
+        // JavaScript for tab interaction
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const sectionContainers = document.querySelectorAll('.section-container');
+    
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tab = button.dataset.tab;
+                // Hide all section containers
+                sectionContainers.forEach(container => {
+                    container.style.display = 'none';
+                });
+                // Show the selected section container
+                document.getElementById(`${tab}-section`).style.display = 'block';
+            });
+        });
+    </script>
+
 </body>
 
 </html>
