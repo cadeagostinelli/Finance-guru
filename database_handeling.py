@@ -1,7 +1,19 @@
-# Define harperDB instance with necessary info
-hdb = db.HarperDB(url="https://cloud-1-fininfo.harperdbcloud.com",
-                        username="cadeago",
-                        password="sugarfoot45")
+import harperdb
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Retrieve the credentials from environment variables
+hdb_url = os.getenv("HDB_URL")
+hdb_username = os.getenv("HDB_USERNAME")
+hdb_password = os.getenv("HDB_PASSWORD")
+
+# Define HarperDB instance with environment variables
+hdb = harperdb.HarperDB(url=hdb_url,
+                        username=hdb_username,
+                        password=hdb_password)
 
 SCHEMA = "finance_repo"
 
