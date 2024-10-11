@@ -11,5 +11,6 @@ This excel template is given to the user to fill out with their information.
 
 The pandas function will then produce pie charts of their income/expense/investments.
 This is done utilizing matplot's python library. Css styling needs to be added to make the visualization more appealing and readable.
-![image](https://github.com/user-attachments/assets/3629b77b-ceab-4484-94f7-2030d77f3e92)
+![financeguruincome](https://github.com/user-attachments/assets/814eb445-65b5-4a03-a707-6faa0ec91c22)
+
 
