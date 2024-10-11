@@ -1,7 +1,7 @@
 Finance Guru is a full-stack application aimed at organizing user's financial data utilizing an excel sheet to give them relevant visualizations. 
 
 The homepage offers basic functions for the time being, with the login function not being fully developed yet.
-![image](https://github.com/cadeagostinelli/Finance-guru/assets/144862955/05a74feb-b21a-468c-8606-6f2183fe53aa)
+![cleanlogin](https://github.com/user-attachments/assets/df6ec8f9-af08-4382-b44a-594091e6e399)
 The html/css for the login function and pie charts is barebones for the time being.
 
 From the home page, the user you can use the upload button to add their excel sheet where the data will be extracted and used.
@@ -11,4 +11,5 @@ This excel template is given to the user to fill out with their information.
 
 The pandas function will then produce pie charts of their income/expense/investments.
 This is done utilizing matplot's python library. Css styling needs to be added to make the visualization more appealing and readable.
-![image](https://github.com/cadeagostinelli/Finance-guru/assets/144862955/832bc576-b780-4911-871b-1feb8aace18d)
+![image](https://github.com/user-attachments/assets/3629b77b-ceab-4484-94f7-2030d77f3e92)
+
